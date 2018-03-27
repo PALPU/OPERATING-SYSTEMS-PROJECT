@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<conio.h>
 #include<string.h>
-
+//THIS PROJECT BELONGS TO PRASHANT AGRAWAL
 struct Process
 {
 	char process[5];
