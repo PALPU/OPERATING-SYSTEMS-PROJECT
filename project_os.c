@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<conio.h>
 #include<string.h>
-//THIS PROJECT BELONGS TO PRASHANT AGRAWAL//k-1608//roll-11
+
 struct Process
 {
 	char process[5];
@@ -23,14 +23,14 @@ void findMinTime()
 	for(i=0;i<4;i++)
 	{
 		if(obj[i].priority==-1)
-		continue;
+			continue;
 		if(min_arrtime==obj[i].arr_t)
 		{
 			if(obj[i].estRun_t<runTime)
 			{
-			strcpy(cur_process,obj[i].process);
-			runTime=obj[i].estRun_t;
-			min_arrtime=obj[i].arr_t;		
+				strcpy(cur_process,obj[i].process);
+				runTime=obj[i].estRun_t;
+				min_arrtime=obj[i].arr_t;		
 			}
 		}
 		else if(min_arrtime>obj[i].arr_t)
@@ -44,7 +44,7 @@ void findMinTime()
 	cur_time=min_arrtime;
 	return;
 }
-void findMaxPriority()
+void findMaxPriority()//FUNCTION TO FIND THE MAXIMUM PRIORITY
 {
 	double max_priority=-10000000.0;
 	for(i=0;i<4;i++)
@@ -72,16 +72,16 @@ void main()
 		scanf("%s",obj[i].process);
 		printf("Enter the Arrival Time: ");
 		scanf("%d",&(obj[i].arr_t));
-		printf("Enter the Burst Time: ");
+		printf("Enter the Burst Time  : ");
 		scanf("%lf",&(obj[i].estRun_t));
 		printf("******************************************\n\n");
 		if(min_arrtime==obj[i].arr_t)
 		{
 			if(obj[i].estRun_t<runTime)
 			{
-			strcpy(cur_process,obj[i].process);
-			runTime=obj[i].estRun_t;
-			min_arrtime=obj[i].arr_t;		
+				strcpy(cur_process,obj[i].process);
+				runTime=obj[i].estRun_t;
+				min_arrtime=obj[i].arr_t;		
 			}
 		}
 		else if(min_arrtime>obj[i].arr_t)
@@ -108,7 +108,7 @@ void main()
 		for(i=0;i<4;i++)
 		{
 			if(obj[i].priority==-1)
-			continue;
+				continue;
 			else if(cur_time<obj[i].arr_t)
 			{
 				p=1;
@@ -143,9 +143,9 @@ void main()
 	printf("\n  *******************************************************************************************         \n");
 	for(i=0;i<4;i++)
 	{
-	printf("\n          %s        %3d           %3.0lf        %3d 	         %3.0lf		    %3d  ",obj[i].process,obj[i].arr_t,obj[i].estRun_t,obj[i].wait_t,obj[i].turnAround_t,obj[i].arr_t+obj[i].wait_t);
-	avgTurnAround_t=avgTurnAround_t+obj[i].turnAround_t;
-	avgWait_t=avgWait_t+obj[i].wait_t;
+		printf("\n          %s        %3d           %3.0lf        %3d 	         %3.0lf		    %3d  ",obj[i].process,obj[i].arr_t,obj[i].estRun_t,obj[i].wait_t,obj[i].turnAround_t,obj[i].arr_t+obj[i].wait_t);
+		avgTurnAround_t=avgTurnAround_t+obj[i].turnAround_t;
+		avgWait_t=avgWait_t+obj[i].wait_t;
 	}
 	printf("\n\n\tAverage_Waiting_Time of all the processes is= %.2lf",avgWait_t/4);
 	printf("\n\tAverage_TurnAround_Time of all the processes is= %.2lf",avgTurnAround_t/4);
