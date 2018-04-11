@@ -138,7 +138,7 @@ void main()
 		}
 		
 	}
-	
+	//printing statements
 	printf("\n        Process  Arrival time  Est_RunTime  WaitingTime    TurnAroundTime        StartTime");
 	printf("\n  *******************************************************************************************         \n");
 	for(i=0;i<4;i++)
