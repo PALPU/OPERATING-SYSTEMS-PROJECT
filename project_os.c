@@ -78,8 +78,18 @@ void main()
 		scanf("%s",obj[i].process);
 		printf("Enter its Arrival Time: ");
 		scanf("%d",&(obj[i].arr_t));
+		if(obj[i].arr_t<0)
+		{
+			printf("\n\t\t\ttime in negative error");
+			exit(0);
+		}
 		printf("Enter its Burst Time  : ");
 		scanf("%lf",&(obj[i].estRun_t));
+		if(obj[i].estRun_t<0)
+		{
+			printf("\n\t\t\tEstimated run time in negative error");
+			exit(0);
+		}
 		printf("******************************************\n\n");
 		if(min_arrtime==obj[i].arr_t)
 		{
