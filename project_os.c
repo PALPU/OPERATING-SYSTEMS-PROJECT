@@ -1,7 +1,7 @@
 #include<stdio.h>
-#include<conio.h>
 #include<string.h>
-
+#include<stdlib.h>
+int n;
 struct Process
 {
 	char process[5];
@@ -10,7 +10,8 @@ struct Process
 	double priority;
 	int wait_t;
 	double turnAround_t;
-}obj[4]={0};
+};
+struct Process *obj;
 int i,min_arrtime=65537;
 int cur_time=0,i=0,j=0,p=0;
 char cur_process[5];
@@ -20,7 +21,7 @@ void findMinTime()
 {
 	min_arrtime=65537;
 	
-	for(i=0;i<4;i++)
+	for(i=0;i<n;i++)
 	{
 		if(obj[i].priority==-1)
 			continue;
@@ -47,7 +48,7 @@ void findMinTime()
 void findMaxPriority()//FUNCTION TO FIND THE MAXIMUM PRIORITY
 {
 	double max_priority=-10000000.0;
-	for(i=0;i<4;i++)
+	for(i=0;i<n;i++)
 	{
 		if(obj[i].priority==-1)
 		{
@@ -66,13 +67,18 @@ void findMaxPriority()//FUNCTION TO FIND THE MAXIMUM PRIORITY
 }
 void main()
 {
-	for(i=0;i<4;i++)
+
+	printf("enter the number of processes: ");
+	scanf("%d",&n);
+	printf("\n\t\tEnter the details of the %d processes one by one\n\n",n);
+	obj=(struct Process*)malloc(sizeof( struct Process)*n);
+	for(i=0;i<n;i++)
 	{
-		printf("Enter the Process Name: ");
+		printf("Enter %d the Process Name: ",i+1);
 		scanf("%s",obj[i].process);
-		printf("Enter the Arrival Time: ");
+		printf("Enter its Arrival Time: ");
 		scanf("%d",&(obj[i].arr_t));
-		printf("Enter the Burst Time  : ");
+		printf("Enter its Burst Time  : ");
 		scanf("%lf",&(obj[i].estRun_t));
 		printf("******************************************\n\n");
 		if(min_arrtime==obj[i].arr_t)
@@ -93,9 +99,9 @@ void main()
 	}
 	cur_time=min_arrtime;
 	min_arrtime=65537;
-	for(j=0;j<4;j++)
+	for(j=0;j<n;j++)
 	{
-		for(i=0;i<4;i++)
+		for(i=0;i<n;i++)
 		{
 			if(obj[i].priority!=-1 && strcmp(obj[i].process,cur_process)==0)
 			{
@@ -105,7 +111,7 @@ void main()
 				obj[i].turnAround_t=cur_time-obj[i].arr_t;
 			}
 		}
-		for(i=0;i<4;i++)
+		for(i=0;i<n;i++)
 		{
 			if(obj[i].priority==-1)
 				continue;
@@ -126,7 +132,7 @@ void main()
 		}
 		else
 		{
-			for(i=0;i<4;i++)
+			for(i=0;i<n;i++)
 			{
 				if(obj[i].priority!=-1 && cur_time>obj[i].arr_t)
 				{
@@ -137,17 +143,17 @@ void main()
 			findMaxPriority();
 		}
 		
-	}
-	//printing statements
-	printf("\n        Process  Arrival time  Est_RunTime  WaitingTime    TurnAroundTime        StartTime");
-	printf("\n  *******************************************************************************************         \n");
-	for(i=0;i<4;i++)
+	}	
+	//final printing
+	printf("\n\t\t\t\tRESULTS AFTER CALCULATIONS\n\n");
+	printf("\n       Process  Arrival time    Est_RunTime    WaitingTime     TurnAroundTime      StartTime\n\n");
+	for(i=0;i<n;i++)
 	{
-		printf("\n          %s        %3d           %3.0lf        %3d 	         %3.0lf		    %3d  ",obj[i].process,obj[i].arr_t,obj[i].estRun_t,obj[i].wait_t,obj[i].turnAround_t,obj[i].arr_t+obj[i].wait_t);
+		printf("\n          %s        %3d           %3.0lf        %6d 	         %4.0lf		    %3d  ",obj[i].process,obj[i].arr_t,obj[i].estRun_t,obj[i].wait_t,obj[i].turnAround_t,obj[i].arr_t+obj[i].wait_t);
 		avgTurnAround_t=avgTurnAround_t+obj[i].turnAround_t;
 		avgWait_t=avgWait_t+obj[i].wait_t;
 	}
-	printf("\n\n\tAverage_Waiting_Time of all the processes is= %.2lf",avgWait_t/4);
-	printf("\n\tAverage_TurnAround_Time of all the processes is= %.2lf",avgTurnAround_t/4);
+	printf("\n\n\n\t\tAverage_Waiting_Time of all the processes is %.2lf units",avgWait_t/n);
+	printf("\n\n\t\tAverage_TurnAround_Time of all the processes is %.2lf units\n\n\n\n",avgTurnAround_t/n);
 	
 }
