@@ -74,7 +74,7 @@ void main()
 	obj=(struct Process*)malloc(sizeof( struct Process)*n);
 	for(i=0;i<n;i++)
 	{
-		printf("Enter %d the Process Name: ",i+1);
+		printf("Enter the %d Process Name: ",i+1);
 		scanf("%s",obj[i].process);
 		printf("Enter its Arrival Time: ");
 		scanf("%d",&(obj[i].arr_t));
